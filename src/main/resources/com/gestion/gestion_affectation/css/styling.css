@@ -1,0 +1,46 @@
+.button {
+    -fx-background-color: #886399;
+    -fx-background-radius: 0em;
+    -fx-text-fill: #ffffff;
+}
+.button:hover {
+    -fx-background-color: #367893;
+}
+.button:pressed {
+    -fx-background-color: #759428;
+}
+.button:focused {
+    -fx-background-color: #279597;
+    -fx-border-color: #CD6788;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+.styled-table {
+    -fx-font-size: 14;
+    -fx-font-family: "Arial";
+    -fx-table-cell-border-color: transparent; /* Supprime les bordures internes des cellules pour un look minimaliste */
+    -fx-table-header-border-color: transparent; /* Supprime les bordures des en-têtes */
+}
+
+.styled-table .column-header {
+    -fx-background-color: #4CAF50; /* Fond vert pour les en-têtes */
+    -fx-text-fill: white; /* Texte blanc pour les en-têtes */
+    -fx-font-weight: bold; /* Texte en gras pour les en-têtes */
+    -fx-alignment: CENTER; /* Centrer le texte dans les en-têtes */
+}
+
+.styled-table .column-header .label {
+    -fx-alignment: CENTER; /* Centrer le texte dans les en-têtes */
+}
+
+.styled-table .table-row-cell {
+    -fx-background-color: white; /* Fond blanc pour les lignes */
+    -fx-text-fill: #333; /* Texte gris foncé pour les cellules */
+}
+
+.styled-table .table-row-cell:hover {
+    -fx-background-color: #f5f5f5; /* Légère couleur au survol pour un effet minimaliste */
+}
+
+.table-column-header {
+    -fx-alignment: CENTER; /* Centrer le texte dans les en-têtes */
+}
