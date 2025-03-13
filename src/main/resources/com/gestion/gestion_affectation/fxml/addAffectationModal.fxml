@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.gestion_affectation.controller.AddAffectationModalController"
+      alignment="CENTER"
+      spacing="10"
+      style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #0a3b49; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;"
+      prefWidth="300.0"
+      prefHeight="250.0">
 
-</AnchorPane>
+    <children>
+        <Label text="Ajouter une nouvelle affectation"
+               style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>
+
+        <Label text="Code Employé:"/>
+        <TextField fx:id="codeEmpField"/>
+
+        <Label text="Code Lieu:"/>
+        <TextField fx:id="codeLieuField"/>
+
+        <Label text="Date:"/>
+        <DatePicker fx:id="datePicker"/>
+
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <children>
+                <Button fx:id="cancelButton"
+                        text="Annuler"
+                        onAction="#handleCancel"
+                        style="-fx-background-color: #B71C00; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button fx:id="saveButton"
+                        text="Valider"
+                        onAction="#handleSave"
+                        style="-fx-background-color: #39803C; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </children>
+        </HBox>
+    </children>
+</VBox>

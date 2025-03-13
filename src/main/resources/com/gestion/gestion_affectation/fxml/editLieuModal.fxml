@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.gestion_affectation.controller.EditLieuModalController"
+      alignment="CENTER"
+      spacing="10"
+      style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #0a3b49; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;"
+      prefWidth="300.0"
+      prefHeight="200.0">
+
+    <children>
+        <Label text="Modifier un lieu"
+               style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+        <Label text="Code Lieu:"/>
+        <TextField fx:id="codePlaceField"/>
+
+        <Label text="Désignation:"/>
+        <TextField fx:id="designationField"/>
+
+        <Label text="Province:"/>
+        <TextField fx:id="provinceField"/>
+
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <children>
+                <Button fx:id="cancelButton"
+                        text="Annuler"
+                        onAction="#handleCancel"
+                        style="-fx-background-color: #B71C00; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Button fx:id="saveButton"
+                        text="Mettre à jour"
+                        onAction="#handleUpdate"
+                        style="-fx-background-color: #39803C; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </children>
+        </HBox>
+    </children>
+</VBox>

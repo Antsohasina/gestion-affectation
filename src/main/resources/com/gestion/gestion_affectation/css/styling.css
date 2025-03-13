@@ -1,46 +1,87 @@
+#root {
+    -fx-border-color: #0a3b49;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.root {
+    -fx-border-color: #0a3b49;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
 .button {
-    -fx-background-color: #886399;
+    -fx-background-color: #0a3b49;
     -fx-background-radius: 0em;
     -fx-text-fill: #ffffff;
 }
 .button:hover {
-    -fx-background-color: #367893;
+    -fx-background-color: #0a3b49;
 }
 .button:pressed {
-    -fx-background-color: #759428;
+    -fx-background-color:#0a3b49;
 }
 .button:focused {
-    -fx-background-color: #279597;
-    -fx-border-color: #CD6788;
+    -fx-background-color: #0a3b49;
+    -fx-border-color: #0a3b49;
     -fx-border-width: 0px 0px 0px 3px;
 }
 .styled-table {
-    -fx-font-size: 14;
-    -fx-font-family: "Arial";
-    -fx-table-cell-border-color: transparent; /* Supprime les bordures internes des cellules pour un look minimaliste */
-    -fx-table-header-border-color: transparent; /* Supprime les bordures des en-têtes */
+    -fx-font-size: 12;
+    -fx-background-color: white;
+    -fx-border-color: transparent;
 }
 
 .styled-table .column-header {
-    -fx-background-color: #4CAF50; /* Fond vert pour les en-têtes */
-    -fx-text-fill: white; /* Texte blanc pour les en-têtes */
+    -fx-background-color: #0a3b49; /* Fond vert pour les en-têtes */
     -fx-font-weight: bold; /* Texte en gras pour les en-têtes */
-    -fx-alignment: CENTER; /* Centrer le texte dans les en-têtes */
+    -fx-border-color: transparent; /* Ajoute uniquement une bordure en bas */
+    -fx-padding: 10 15 10 15; /* Ajoute un peu d'espace autour du texte */
+    -fx-pref-height: 40; /* Increase header height */
+    -fx-min-width: 120; /* Set minimum width for headers */
 }
 
 .styled-table .column-header .label {
-    -fx-alignment: CENTER; /* Centrer le texte dans les en-têtes */
+    -fx-alignment: CENTER-LEFT; /* Centrer le texte dans les en-têtes */
+    -fx-text-fill: white;
+
+
 }
+
 
 .styled-table .table-row-cell {
     -fx-background-color: white; /* Fond blanc pour les lignes */
-    -fx-text-fill: #333; /* Texte gris foncé pour les cellules */
+    -fx-border-color: transparent transparent #f2f2f2 transparent; /* Bordure inférieure fine gris clair */
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 5;
+}
+
+/* Style des lignes alternées */
+.styled-table .table-row-cell:odd {
+    -fx-background-color: #f9f9f9; /* Légèrement grisé pour les lignes impaires */
 }
 
 .styled-table .table-row-cell:hover {
     -fx-background-color: #f5f5f5; /* Légère couleur au survol pour un effet minimaliste */
 }
+/* Style pour les icônes d'action */
+.action-button {
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+}
+.action-button:hover {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 50%;
+}
 
+/* Style pour la colonne d'action */
+.action-column {
+    -fx-alignment: CENTER;
+}
 .table-column-header {
     -fx-alignment: CENTER; /* Centrer le texte dans les en-têtes */
 }

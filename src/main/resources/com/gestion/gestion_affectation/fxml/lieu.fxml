@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.Button?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.gestion_affectation.controller.LieuController"
+      prefHeight="474.0"
+      prefWidth="600.0"
+      style="-fx-background-color: #f0f0f0; -fx-padding: 50;"
+      spacing="10">
+        <children>
+                <HBox alignment="CENTER_LEFT" spacing="20">
+                        <children>
+                                <Label text="Gestion des lieux" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Button fx:id="addButton" text="Ajouter" onAction="#handleAddButton"
+                                        style="-fx-background-color: #0a3b49; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-border-radius: 7; -fx-border-width: 2; -fx-background-radius: 5;"/>
+                        </children>
+                        <VBox.margin>
+                                <Insets bottom="10"/>
+                        </VBox.margin>
+                </HBox>
 
-</AnchorPane>
+                <TableView fx:id="tableLieux" prefHeight="400.0" prefWidth="620.0"
+                           styleClass="styled-table" style="-fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 5;">
+                        <columns>
+                                <TableColumn fx:id="codePlaceColumn" text="Code Lieu" prefWidth="120.0">
+                                        <cellValueFactory>
+                                                <PropertyValueFactory property="codePlace"/>
+                                        </cellValueFactory>
+
+                                </TableColumn>
+
+                                <TableColumn fx:id="designationColumn" text="Désignation" prefWidth="200.0">
+                                        <cellValueFactory>
+                                                <PropertyValueFactory property="designation"/>
+                                        </cellValueFactory>
+
+                                </TableColumn>
+
+                                <TableColumn fx:id="provinceColumn" text="Province" prefWidth="200.0">
+                                        <cellValueFactory>
+                                                <PropertyValueFactory property="province"/>
+                                        </cellValueFactory>
+
+                                </TableColumn>
+
+                                <!-- Nouvelle colonne Actions -->
+                                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="140.0" styleClass="action-column">
+                                        <cellFactory>
+                                                <!-- Vous pourriez définir une cellule personnalisée ici, mais pour simplicité, nous le ferons dans le contrôleur -->
+                                        </cellFactory>
+
+                                </TableColumn>
+                        </columns>
+                </TableView>
+
+        </children>
+
+</VBox>

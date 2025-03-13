@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.gestion_affectation.controller.ConfirmDeleteLieuModalController"
+      alignment="CENTER"
+      spacing="15"
+      style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #B71C00; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;"
+      prefWidth="300.0"
+      prefHeight="150.0">
+
+    <children>
+        <Label fx:id="confirmationLabel"
+               text="Êtes-vous sûr de vouloir supprimer ce lieu ?"
+               style="-fx-font-size: 14; -fx-text-fill: #333; -fx-wrap-text: true;"
+               alignment="CENTER"/>
+
+        <HBox alignment="CENTER" spacing="20">
+            <children>
+                <Button fx:id="cancelButton"
+                        text="Annuler"
+                        onAction="#handleCancel"
+                        style="-fx-background-color: #757575; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Button fx:id="confirmButton"
+                        text="Confirmer"
+                        onAction="#handleConfirm"
+                        style="-fx-background-color: #B71C00; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            </children>
+        </HBox>
+    </children>
+</VBox>

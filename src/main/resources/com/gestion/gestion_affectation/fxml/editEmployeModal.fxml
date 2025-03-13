@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gestion.gestion_affectation.controller.EditEmployeModalController"
+        alignment="CENTER"
+        spacing="15"
+        style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #0a3b49; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;"
+        prefWidth="350.0"
+        prefHeight="300.0">
+
+<children>
+<Label text="Modifier un employé"
+       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #333333;"/> <!-- Changé à "employé" -->
+
+<Label text="Code Employé:" style="-fx-font-size: 14;"/>
+<TextField fx:id="codeEmpField" promptText="ex. E001" style="-fx-pref-width: 200;"/> <!-- Changé à codeEmpField -->
+
+<Label text="Prénom:" style="-fx-font-size: 14;"/>
+<TextField fx:id="firstNameField" promptText="ex. Jean" style="-fx-pref-width: 200;"/> <!-- Changé à firstNameField -->
+
+<Label text="Nom de famille:" style="-fx-font-size: 14;"/>
+<TextField fx:id="lastNameField" promptText="ex. Dupont" style="-fx-pref-width: 200;"/> <!-- Ajouté pour lastName -->
+
+<Label text="Poste:" style="-fx-font-size: 14;"/>
+<TextField fx:id="jobField" promptText="ex. Technicien" style="-fx-pref-width: 200;"/> <!-- Changé à jobField -->
+
+<HBox alignment="CENTER_RIGHT" spacing="15"> <!-- Augmenté pour plus d'espace -->
+    <children>
+        <Button fx:id="cancelButton"
+                text="Annuler"
+                onAction="#handleCancel"
+                style="-fx-background-color: #B71C00; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5;"/>
+        <Button fx:id="saveButton"
+                text="Mettre à jour"
+                onAction="#handleUpdate"
+                style="-fx-background-color: #39803C; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5;"/>
+    </children>
+</HBox>
+</children>
+        </VBox>
