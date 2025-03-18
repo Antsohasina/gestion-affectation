@@ -32,25 +32,42 @@
         <TableView fx:id="tableAffectations" prefHeight="400.0" prefWidth="620.0"
                    styleClass="styled-table" style="-fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 5;">
             <columns>
-                <TableColumn fx:id="codeEmpColumn" text="Code Employé" prefWidth="120.0">
+                <TableColumn fx:id="codeEmpColumn" text="Code Employé" prefWidth="100.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="codeEmp"/>
                     </cellValueFactory>
                 </TableColumn>
 
-                <TableColumn fx:id="codeLieuColumn" text="Code Lieu" prefWidth="150.0">
+                <TableColumn fx:id="firstNameColumn" text="Prénom" prefWidth="100.0">
                     <cellValueFactory>
-                        <PropertyValueFactory property="codeLieu"/>
+                        <PropertyValueFactory property="employe.firstName"/>
                     </cellValueFactory>
                 </TableColumn>
 
-                <TableColumn fx:id="dateColumn" text="Date" prefWidth="200.0">
+                <TableColumn fx:id="lastNameColumn" text="Nom" prefWidth="100.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="employe.lastName"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="codeLieuColumn" text="Code Lieu" prefWidth="100.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="codePlace"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="designationColumn" text="Désignation" prefWidth="120.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="place.designation"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="150.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="date"/>
                     </cellValueFactory>
                 </TableColumn>
 
-                <!-- Nouvelle colonne Actions -->
                 <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="140.0" styleClass="action-column">
                     <cellFactory>
                         <!-- À définir dans le contrôleur -->

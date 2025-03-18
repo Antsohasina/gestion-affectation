@@ -2,6 +2,7 @@ package com.gestion.gestion_affectation.controller;
 
 import com.gestion.gestion_affectation.model.Employe;
 import com.gestion.gestion_affectation.model.Place;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,7 +42,16 @@ public class AffectationController implements Initializable {
     private TableColumn<Affectation, String> codeEmpColumn;
 
     @FXML
+    private TableColumn<Affectation, String> firstNameColumn;
+
+    @FXML
+    private TableColumn<Affectation, String> lastNameColumn;
+
+    @FXML
     private TableColumn<Affectation, String> codeLieuColumn;
+
+    @FXML
+    private TableColumn<Affectation, String> designationColumn;
 
     @FXML
     private TableColumn<Affectation, LocalDateTime> dateColumn;
@@ -55,9 +65,29 @@ public class AffectationController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         tableAffectations.getStyleClass().add("styled-table");
 
-        // Set up columns
+        // Configuration des colonnes
         codeEmpColumn.setCellValueFactory(new PropertyValueFactory<>("codeEmp"));
+
+        // cellValueFactory personnalisé pour firstName
+        firstNameColumn.setCellValueFactory(cellData -> {
+            Affectation affectation = cellData.getValue();
+            return affectation.getEmploye() != null ? affectation.getEmploye().firstNameProperty() : new SimpleStringProperty("");
+        });
+
+        // cellValueFactory personnalisé pour lastName
+        lastNameColumn.setCellValueFactory(cellData -> {
+            Affectation affectation = cellData.getValue();
+            return affectation.getEmploye() != null ? affectation.getEmploye().lastNameProperty() : new SimpleStringProperty("");
+        });
+
         codeLieuColumn.setCellValueFactory(new PropertyValueFactory<>("codePlace"));
+
+        // cellValueFactory personnalisé pour designation
+        designationColumn.setCellValueFactory(cellData -> {
+            Affectation affectation = cellData.getValue();
+            return affectation.getPlace() != null ? affectation.getPlace().designationProperty() : new SimpleStringProperty("");
+        });
+
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         configureActionsColumn();
@@ -67,7 +97,6 @@ public class AffectationController implements Initializable {
 
         loadAffectationsFromApi();
     }
-
     private void loadAffectationsFromApi() {
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -192,7 +221,6 @@ public class AffectationController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestion/gestion_affectation/fxml/editAffectationModal.fxml"));
             Parent root = loader.load();
 
-            // Assuming an EditAffectationModalController exists
             EditAffectationModalController modalController = loader.getController();
             modalController.setAffectationData(affectation, affectationList);
 
@@ -219,7 +247,6 @@ public class AffectationController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestion/gestion_affectation/fxml/confirmDeleteAffectationModal.fxml"));
             Parent root = loader.load();
 
-            // Assuming a ConfirmDeleteAffectationModalController exists
             ConfirmDeleteAffectationModalController modalController = loader.getController();
             modalController.setConfirmationMessage("Êtes-vous sûr de vouloir supprimer l'affectation : " + affectation.getCodeEmp() + " - " + affectation.getCodePlace() + " ?");
 
