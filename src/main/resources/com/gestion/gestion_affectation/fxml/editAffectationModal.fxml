@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.gestion.gestion_affectation.controller.AddAffectationModalController"
+      fx:controller="com.gestion.gestion_affectation.controller.EditAffectationModalController"
       alignment="CENTER"
       spacing="10"
       style="-fx-background-color: white; -fx-padding: 20; -fx-border-color: #0a3b49; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;"
@@ -16,7 +16,7 @@
       prefHeight="250.0">
 
     <children>
-        <Label text="Ajouter une nouvelle affectation"
+        <Label text="Modifier une affectation"
                style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>
 
         <HBox alignment="BASELINE_LEFT">
@@ -31,7 +31,7 @@
                 <Label text="Code Lieu:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
             </children>
         </HBox>
-        <TextField fx:id="codeLieuField" promptText="ex. L003" style="-fx-pref-width: 200;"/>
+        <TextField fx:id="codePlaceField" promptText="ex. L003" style="-fx-pref-width: 200;"/>
 
         <HBox alignment="BASELINE_LEFT">
             <children>
@@ -48,7 +48,7 @@
                         style="-fx-background-color: #B71C00; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5;"/>
                 <Button fx:id="saveButton"
                         text="Valider"
-                        onAction="#handleSave"
+                        onAction="#handleUpdate"
                         style="-fx-background-color: #39803C; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5;"/>
             </children>
         </HBox>

@@ -16,27 +16,39 @@
 
     <children>
         <Label text="Modifier un lieu"
-               style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+               style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>
 
-        <Label text="Code Lieu:"/>
-        <TextField fx:id="codePlaceField"/>
+        <HBox alignment="BASELINE_LEFT">
+            <children>
+                <Label text="Code Lieu:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>
+            </children>
+        </HBox>
+        <TextField fx:id="codePlaceField" promptText="ex. L003" style="-fx-pref-width: 200;"/>
 
-        <Label text="Désignation:"/>
-        <TextField fx:id="designationField"/>
+        <HBox alignment="BASELINE_LEFT">
+            <children>
+                <Label text="Désignation:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>
+            </children>
+        </HBox>
+        <TextField fx:id="designationField" promptText="ex. Bureau Central" style="-fx-pref-width: 200;"/>
 
-        <Label text="Province:"/>
-        <TextField fx:id="provinceField"/>
+        <HBox alignment="BASELINE_LEFT">
+            <children>
+                <Label text="Province:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>
+            </children>
+        </HBox>
+        <TextField fx:id="provinceField" promptText="ex. Québec" style="-fx-pref-width: 200;"/>
 
         <HBox alignment="CENTER_RIGHT" spacing="10">
             <children>
                 <Button fx:id="cancelButton"
                         text="Annuler"
                         onAction="#handleCancel"
-                        style="-fx-background-color: #B71C00; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        style="-fx-background-color: #B71C00; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5;"/>
                 <Button fx:id="saveButton"
                         text="Mettre à jour"
                         onAction="#handleUpdate"
-                        style="-fx-background-color: #39803C; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                        style="-fx-background-color: #39803C; -fx-font-weight: bold; -fx-text-fill: white; -fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5;"/>
             </children>
         </HBox>
     </children>

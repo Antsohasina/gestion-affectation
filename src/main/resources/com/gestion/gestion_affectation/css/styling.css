@@ -85,3 +85,12 @@
 .table-column-header {
     -fx-alignment: CENTER; /* Centrer le texte dans les en-têtes */
 }
+.date-picker > .text-field {
+    -fx-pref-width: 170px; /* Adjust this to account for the calendar button's width */
+}
+.date-picker > .arrow-button {
+    -fx-pref-width: 30px;
+}
+.date-picker {
+    -fx-pref-width: 255px;
+}

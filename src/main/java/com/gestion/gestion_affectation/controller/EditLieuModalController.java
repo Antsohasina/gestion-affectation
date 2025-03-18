@@ -1,10 +1,11 @@
 package com.gestion.gestion_affectation.controller;
 
+import com.gestion.gestion_affectation.model.Place;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import com.gestion.gestion_affectation.model.Lieu;
+import com.gestion.gestion_affectation.model.Place;
 import javafx.collections.ObservableList;
 
 import java.net.http.HttpClient;
@@ -25,11 +26,11 @@ public class EditLieuModalController {
     private TextField provinceField;
 
     private Stage stage;
-    private Lieu lieuToEdit;
-    private ObservableList<Lieu> lieuxList;
+    private Place lieuToEdit;
+    private ObservableList<Place> lieuxList;
 
     // Méthode pour initialiser les données du lieu à modifier
-    public void setLieuData(Lieu lieu, ObservableList<Lieu> lieuxList) {
+    public void setLieuData(Place lieu, ObservableList<Place> lieuxList) {
         this.lieuToEdit = lieu;
         this.lieuxList = lieuxList;
 

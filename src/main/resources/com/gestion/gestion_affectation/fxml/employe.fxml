@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
 
+<?import javafx.scene.control.TextField?>
 <VBox xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.gestion.gestion_affectation.controller.EmployeController"
       prefHeight="474.0"
@@ -19,7 +20,14 @@
         <children>
                 <HBox alignment="CENTER_LEFT" spacing="20">
                         <children>
-                                <Label text="Gestion des employés" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #0a3b49; "/>
+                                <VBox spacing="5">
+                                        <children>
+                                                <Label text="Gestion des employés" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #0a3b49;" />
+                                                <TextField fx:id="searchField" promptText="Rechercher un employé..."
+                                                           prefWidth="300.0"
+                                                           style="-fx-background-color: white; -fx-border-color: #0a3b49; -fx-border-radius: 5; -fx-padding: 5;"/>
+                                        </children>
+                                </VBox>
                                 <Region HBox.hgrow="ALWAYS" />
                                 <Button fx:id="addButton" text="Ajouter" onAction="#handleAddButton"
                                         style="-fx-background-color: #0a3b49; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-border-radius: 7; -fx-border-width: 2; -fx-background-radius: 5;"/>

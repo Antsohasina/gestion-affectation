@@ -71,4 +71,18 @@ public class Employe {
     public void setJob(String job) {
         this.job.set(job);
     }
+
+    // Ajout de equals() et hashCode() pour supprimer les doublons
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employe employe = (Employe) o;
+        return codeEmp.get().equals(employe.codeEmp.get());
+    }
+
+    @Override
+    public int hashCode() {
+        return codeEmp.get().hashCode();
+    }
 }

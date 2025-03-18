@@ -1,5 +1,6 @@
 package com.gestion.gestion_affectation.controller;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +31,9 @@ import com.google.gson.JsonParser;
 import javafx.stage.StageStyle;
 
 public class EmployeController implements Initializable {
+
+    @FXML
+    private TextField searchField;
 
     @FXML
     private TableView<Employe> tableEmployes;

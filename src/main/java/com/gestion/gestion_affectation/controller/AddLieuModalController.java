@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import com.gestion.gestion_affectation.model.Lieu;
+import com.gestion.gestion_affectation.model.Place;
 import javafx.collections.ObservableList;
 
 import java.net.http.HttpClient;
@@ -32,10 +32,10 @@ public class AddLieuModalController {
     private Button cancelButton;
 
     private Stage stage;
-    private ObservableList<Lieu> lieuxList;
+    private ObservableList<Place> lieuxList;
 
     // Méthode pour initialiser le contrôleur avec le stage et la liste des lieux
-    public void setStageAndLieux(Stage stage, ObservableList<Lieu> lieuxList) {
+    public void setStageAndLieux(Stage stage, ObservableList<Place> lieuxList) {
         this.stage = stage;
         this.lieuxList = lieuxList;
     }
@@ -47,7 +47,7 @@ public class AddLieuModalController {
         String province = provinceField.getText();
 
         if (!codePlace.isEmpty() && !designation.isEmpty() && !province.isEmpty()) {
-            Lieu newLieu = new Lieu(codePlace, designation, province);
+            Place newLieu = new Place(codePlace, designation, province);
 
             try {
                 HttpClient client = HttpClient.newHttpClient();

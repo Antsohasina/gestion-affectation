@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import com.gestion.gestion_affectation.model.Lieu;
+import com.gestion.gestion_affectation.model.Place;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,21 +32,21 @@ import javafx.stage.StageStyle;
 public class LieuController implements Initializable {
 
     @FXML
-    private TableView<Lieu> tableLieux;
+    private TableView<Place> tableLieux;
 
     @FXML
-    private TableColumn<Lieu, String> codePlaceColumn;
+    private TableColumn<Place, String> codePlaceColumn;
 
     @FXML
-    private TableColumn<Lieu, String> designationColumn;
+    private TableColumn<Place, String> designationColumn;
 
     @FXML
-    private TableColumn<Lieu, String> provinceColumn;
+    private TableColumn<Place, String> provinceColumn;
 
     @FXML
-    private TableColumn<Lieu, Void> actionsColumn;
+    private TableColumn<Place, Void> actionsColumn;
 
-    private ObservableList<Lieu> lieuxList;
+    private ObservableList<Place> lieuxList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,7 +65,7 @@ public class LieuController implements Initializable {
     }
 
     private void configureActionsColumn() {
-        actionsColumn.setCellFactory(param -> new TableCell<Lieu, Void>() {
+        actionsColumn.setCellFactory(param -> new TableCell<Place, Void>() {
             private final Button editButton = createButton("edit", "edit-green.png", "Modifier");
             private final Button deleteButton = createButton("delete", "delete-red.png", "Supprimer");
             private final HBox pane = new HBox(10, editButton, deleteButton);
@@ -74,12 +74,12 @@ public class LieuController implements Initializable {
                 pane.setAlignment(Pos.CENTER);
 
                 editButton.setOnAction(event -> {
-                    Lieu lieu = getTableView().getItems().get(getIndex());
+                    Place lieu = getTableView().getItems().get(getIndex());
                     showModifyDialog(lieu);
                 });
 
                 deleteButton.setOnAction(event -> {
-                    Lieu lieu = getTableView().getItems().get(getIndex());
+                    Place lieu = getTableView().getItems().get(getIndex());
                     deleteLieu(lieu);
                 });
             }
@@ -133,7 +133,7 @@ public class LieuController implements Initializable {
         }
     }
 
-    private void showModifyDialog(Lieu lieu) {
+    private void showModifyDialog(Place lieu) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestion/gestion_affectation/fxml/editLieuModal.fxml"));
             Parent root = loader.load();
@@ -156,7 +156,7 @@ public class LieuController implements Initializable {
         }
     }
 
-    private void deleteLieu(Lieu lieu) {
+    private void deleteLieu(Place lieu) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestion/gestion_affectation/fxml/confirmDeleteLieuModal.fxml"));
             Parent root = loader.load();
@@ -228,7 +228,7 @@ public class LieuController implements Initializable {
                 String designation = placeObj.get("designation").getAsString();
                 String province = placeObj.get("province").getAsString();
 
-                Lieu lieu = new Lieu(codePlace, designation, province);
+                Place lieu = new Place(codePlace, designation, province);
                 lieuxList.add(lieu);
             }
         } catch (Exception e) {
