@@ -2,7 +2,7 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
@@ -21,21 +21,21 @@
 
         <HBox alignment="BASELINE_LEFT">
             <children>
-                <Label text="Code Employé:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
+                <Label text="Code Employé :" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
             </children>
         </HBox>
-        <TextField fx:id="codeEmpField" promptText="ex. E001" style="-fx-pref-width: 200;"/>
+        <ComboBox fx:id="codeEmpCombo" promptText="Sélectionnez un employé" style="-fx-pref-width: 255;"/>
 
         <HBox alignment="BASELINE_LEFT">
             <children>
-                <Label text="Code Lieu:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
+                <Label text="Code Lieu :" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
             </children>
         </HBox>
-        <TextField fx:id="codePlaceField" promptText="ex. L003" style="-fx-pref-width: 200;"/>
+        <ComboBox fx:id="codePlaceCombo" promptText="Sélectionnez un lieu" style="-fx-pref-width: 255;"/>
 
         <HBox alignment="BASELINE_LEFT">
             <children>
-                <Label text="Date:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
+                <Label text="Date :" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
             </children>
         </HBox>
         <DatePicker fx:id="datePicker" style="-fx-pref-width: 255; -fx-alignment: center-left;" promptText="Sélectionnez une date"/>

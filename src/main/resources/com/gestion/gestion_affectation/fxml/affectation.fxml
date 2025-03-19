@@ -14,7 +14,7 @@
       fx:controller="com.gestion.gestion_affectation.controller.AffectationController"
       prefHeight="474.0"
       prefWidth="600.0"
-      style="-fx-background-color: #f0f0f0; -fx-padding: 50;"
+      style="-fx-background-color: #f0f0f0; -fx-padding: 50 30;"
       spacing="10">
     <children>
         <HBox alignment="CENTER_LEFT" spacing="20">
@@ -38,13 +38,13 @@
                     </cellValueFactory>
                 </TableColumn>
 
-                <TableColumn fx:id="firstNameColumn" text="Prénom" prefWidth="100.0">
+                <TableColumn fx:id="firstNameColumn" text="Nom" prefWidth="100.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="employe.firstName"/>
                     </cellValueFactory>
                 </TableColumn>
 
-                <TableColumn fx:id="lastNameColumn" text="Nom" prefWidth="100.0">
+                <TableColumn fx:id="lastNameColumn" text="Prénoms" prefWidth="100.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="employe.lastName"/>
                     </cellValueFactory>
@@ -62,13 +62,13 @@
                     </cellValueFactory>
                 </TableColumn>
 
-                <TableColumn fx:id="dateColumn" text="Date" prefWidth="150.0">
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="100.0" style="-fx-alignment: CENTER;">
                     <cellValueFactory>
                         <PropertyValueFactory property="date"/>
                     </cellValueFactory>
                 </TableColumn>
 
-                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="140.0" styleClass="action-column">
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100.0" styleClass="action-column">
                     <cellFactory>
                         <!-- À définir dans le contrôleur -->
                     </cellFactory>

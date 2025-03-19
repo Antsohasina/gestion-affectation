@@ -9,25 +9,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
-
 <?import javafx.scene.control.TextField?>
+
 <VBox xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.gestion.gestion_affectation.controller.EmployeController"
       prefHeight="474.0"
       prefWidth="600.0"
-      style="-fx-background-color: #f0f0f0; -fx-padding: 50;"
+      style="-fx-background-color: #f0f0f0; -fx-padding: 40;"
       spacing="10">
         <children>
+                <!-- Première ligne : Label "Gestion des employés" -->
+                <Label text="Gestion des employés" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #0a3b49;" />
+
+                <!-- Deuxième ligne : Barre de recherche et Bouton dans une HBox -->
                 <HBox alignment="CENTER_LEFT" spacing="20">
                         <children>
-                                <VBox spacing="5">
-                                        <children>
-                                                <Label text="Gestion des employés" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #0a3b49;" />
-                                                <TextField fx:id="searchField" promptText="Rechercher un employé..."
-                                                           prefWidth="300.0"
-                                                           style="-fx-background-color: white; -fx-border-color: #0a3b49; -fx-border-radius: 5; -fx-padding: 5;"/>
-                                        </children>
-                                </VBox>
+                                <TextField fx:id="searchField" promptText="Rechercher un employé..."
+                                           prefWidth="300.0"
+                                           style="-fx-background-color: white; -fx-border-color: #0a3b49; -fx-border-radius: 5; -fx-padding: 5;"/>
                                 <Region HBox.hgrow="ALWAYS" />
                                 <Button fx:id="addButton" text="Ajouter" onAction="#handleAddButton"
                                         style="-fx-background-color: #0a3b49; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15; -fx-border-radius: 7; -fx-border-width: 2; -fx-background-radius: 5;"/>
@@ -37,7 +36,8 @@
                         </VBox.margin>
                 </HBox>
 
-                <TableView fx:id="tableEmployes" prefHeight="400.0" prefWidth="620.0"
+                <!-- TableView -->
+                <TableView fx:id="tableEmployes" prefHeight="400.0" prefWidth="630.0"
                            styleClass="styled-table" style="-fx-border-color: white; -fx-border-width: 1; -fx-border-radius: 5;">
                         <columns>
                                 <TableColumn fx:id="codeEmpColumn" text="Code Employé" prefWidth="120.0">
@@ -45,28 +45,22 @@
                                                 <PropertyValueFactory property="codeEmp"/>
                                         </cellValueFactory>
                                 </TableColumn>
-
                                 <TableColumn fx:id="nomColumn" text="Nom" prefWidth="150.0">
                                         <cellValueFactory>
-                                                <PropertyValueFactory property="lastName"/> <!-- Updated from "nom" -->
+                                                <PropertyValueFactory property="lastName"/>
                                         </cellValueFactory>
                                 </TableColumn>
-
-                                <TableColumn fx:id="prenomsColumn" text="Prénoms" prefWidth="200.0">
+                                <TableColumn fx:id="prenomsColumn" text="Prénoms" prefWidth="188.0">
                                         <cellValueFactory>
-                                                <PropertyValueFactory property="firstName"/> <!-- Updated from "prenoms" -->
+                                                <PropertyValueFactory property="firstName"/>
                                         </cellValueFactory>
                                 </TableColumn>
-
                                 <TableColumn fx:id="posteColumn" text="Poste" prefWidth="120.0">
                                         <cellValueFactory>
-                                                <PropertyValueFactory property="job"/> <!-- Updated from "poste" -->
+                                                <PropertyValueFactory property="job"/>
                                         </cellValueFactory>
                                 </TableColumn>
-
-                                <!-- Nouvelle colonne Actions -->
                                 <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="90.0" styleClass="action-column">
-                                        <!-- Cell factory is defined in the controller, no need to specify here -->
                                 </TableColumn>
                         </columns>
                 </TableView>

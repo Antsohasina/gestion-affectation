@@ -70,6 +70,99 @@ public class EmployeController implements Initializable {
         tableEmployes.setItems(employeList);
 
         loadEmployesFromApi();
+
+        // Ajout du listener pour la recherche
+        searchField.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null && !newValue.trim().isEmpty()) {
+                searchEmployes(newValue.trim());
+            } else {
+                loadEmployesFromApi(); // Revenir à la liste complète si la recherche est vide
+            }
+        });
+    }
+
+    private void searchEmployes(String query) {
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                ObservableList<Employe> searchResults = FXCollections.observableArrayList();
+
+                HttpClient client = HttpClient.newHttpClient();
+
+                try {
+                    // Recherche par lastName
+                    HttpRequest requestLastName = HttpRequest.newBuilder()
+                            .uri(new URL("http://localhost:8080/employes/search/findByLastNameContainingIgnoreCase?name=" + query).toURI())
+                            .GET()
+                            .build();
+                    HttpResponse<String> responseLastName = client.send(requestLastName, HttpResponse.BodyHandlers.ofString());
+                    searchResults.addAll(parseEmployesFromJson(responseLastName.body()));
+                } catch (Exception e) {
+                    System.err.println("Erreur recherche par lastName : " + e.getMessage());
+                }
+
+                try {
+                    // Recherche par firstName
+                    HttpRequest requestFirstName = HttpRequest.newBuilder()
+                            .uri(new URL("http://localhost:8080/employes/search/findByFirstNameContainingIgnoreCase?name=" + query).toURI())
+                            .GET()
+                            .build();
+                    HttpResponse<String> responseFirstName = client.send(requestFirstName, HttpResponse.BodyHandlers.ofString());
+                    searchResults.addAll(parseEmployesFromJson(responseFirstName.body()));
+                } catch (Exception e) {
+                    System.err.println("Erreur recherche par firstName : " + e.getMessage());
+                }
+
+                try {
+                    // Recherche par codeEmp
+                    HttpRequest requestCodeEmp = HttpRequest.newBuilder()
+                            .uri(new URL("http://localhost:8080/employes/search/findByCodeEmpContainingIgnoreCase?codeEmp=" + query).toURI())
+                            .GET()
+                            .build();
+                    HttpResponse<String> responseCodeEmp = client.send(requestCodeEmp, HttpResponse.BodyHandlers.ofString());
+                    searchResults.addAll(parseEmployesFromJson(responseCodeEmp.body()));
+                } catch (Exception e) {
+                    System.err.println("Erreur recherche par codeEmp : " + e.getMessage());
+                }
+
+                // Supprimer les doublons
+                ObservableList<Employe> uniqueResults = FXCollections.observableArrayList();
+                searchResults.stream()
+                        .distinct() // Utilise equals() et hashCode() de Employe
+                        .forEach(uniqueResults::add);
+
+                // Mettre à jour l'UI
+                javafx.application.Platform.runLater(() -> employeList.setAll(uniqueResults));
+                return null;
+            }
+        };
+        new Thread(task).start();
+    }
+
+    private ObservableList<Employe> parseEmployesFromJson(String jsonResponse) {
+        ObservableList<Employe> result = FXCollections.observableArrayList();
+        try {
+            JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
+            JsonArray employesArray = jsonObject.getAsJsonObject("_embedded").getAsJsonArray("employes");
+
+            for (JsonElement element : employesArray) {
+                JsonObject empObj = element.getAsJsonObject();
+                String codeEmp = empObj.getAsJsonObject("_links")
+                        .getAsJsonObject("self")
+                        .get("href").getAsString()
+                        .substring(empObj.getAsJsonObject("_links")
+                                .getAsJsonObject("self")
+                                .get("href").getAsString().lastIndexOf("/") + 1);
+                String firstName = empObj.get("firstName").getAsString();
+                String lastName = empObj.get("lastName").getAsString();
+                String job = empObj.get("job").getAsString();
+
+                result.add(new Employe(codeEmp, firstName, lastName, job));
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur parsing JSON : " + e.getMessage());
+        }
+        return result;
     }
 
     private void loadEmployesFromApi() {
@@ -166,13 +259,13 @@ public class EmployeController implements Initializable {
             modalController.setStageAndEmployes(stage, employeList);
 
             stage.setScene(new Scene(root));
-            stage.initStyle(StageStyle.UNDECORATED); // Ajouter ceci pour supprimer la barre de titre
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.centerOnScreen();
 
             stage.showAndWait();
-            loadEmployesFromApi(); // Rafraîchir après ajout
+            loadEmployesFromApi();
         } catch (IOException e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur lors de l'ouverture du modal d'ajout : " + e.getMessage());
@@ -190,14 +283,14 @@ public class EmployeController implements Initializable {
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.initStyle(StageStyle.UNDECORATED); // Ajouter ceci pour supprimer la barre de titre
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.centerOnScreen();
 
             modalController.setStage(stage);
             stage.showAndWait();
-            tableEmployes.refresh(); // Rafraîchir la table après modification
+            tableEmployes.refresh();
         } catch (IOException e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur lors de l'ouverture du modal de modification : " + e.getMessage());
@@ -207,7 +300,6 @@ public class EmployeController implements Initializable {
 
     private void deleteEmploye(Employe employe) {
         try {
-            // Afficher un modal de confirmation
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gestion/gestion_affectation/fxml/confirmDeleteEmployeModal.fxml"));
             Parent root = loader.load();
 
@@ -216,7 +308,7 @@ public class EmployeController implements Initializable {
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.initStyle(StageStyle.UNDECORATED); // Ajouter ceci pour supprimer la barre de titre
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -225,16 +317,15 @@ public class EmployeController implements Initializable {
             stage.showAndWait();
 
             if (modalController.isConfirmed()) {
-                // Envoyer la requête DELETE à l'API
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(new URL("http://localhost:8080/employes/" + employe.getCodeEmp()).toURI()) // Endpoint avec codeEmp
-                        .DELETE() // Requête DELETE
+                        .uri(new URL("http://localhost:8080/employes/" + employe.getCodeEmp()).toURI())
+                        .DELETE()
                         .build();
 
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-                if (response.statusCode() == 200 || response.statusCode() == 204) { // OK ou No Content
-                    employeList.remove(employe); // Supprimer de la liste locale si l'API réussit
+                if (response.statusCode() == 200 || response.statusCode() == 204) {
+                    employeList.remove(employe);
                     System.out.println("Employé supprimé avec succès : " + employe.getCodeEmp() + ", " + employe.getLastName() + ", " + employe.getFirstName());
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur lors de la suppression : " + response.statusCode() + " - " + response.body());

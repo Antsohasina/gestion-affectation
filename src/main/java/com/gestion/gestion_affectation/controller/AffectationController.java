@@ -27,6 +27,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -88,8 +89,22 @@ public class AffectationController implements Initializable {
             return affectation.getPlace() != null ? affectation.getPlace().designationProperty() : new SimpleStringProperty("");
         });
 
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
+// Configuration du format de la date (jj/mm/aaaa)
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        dateColumn.setCellFactory(column -> new TableCell<Affectation, LocalDateTime>() {
+            private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            @Override
+            protected void updateItem(LocalDateTime item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(formatter.format(item));
+                }
+            }
+        });
         configureActionsColumn();
 
         affectationList = FXCollections.observableArrayList();

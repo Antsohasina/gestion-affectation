@@ -21,19 +21,33 @@
 .button:hover {
     -fx-background-color: #0a3b49;
 }
-.button:pressed {
-    -fx-background-color:#0a3b49;
+/* Style par défaut (optionnel) */
+#btnEmploye, #btnLieu, #btnAffectation {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 0 10px;
+    -fx-pref-width: 140px;
+    -fx-max-width: 140px;
 }
-.button:focused {
-    -fx-background-color: #0a3b49;
-    -fx-border-color: #0a3b49;
-    -fx-border-width: 0px 0px 0px 3px;
+
+/* Effet au survol pour les boutons spécifiques */
+#btnEmploye:hover, #btnLieu:hover, #btnAffectation:hover {
+    -fx-border-color: white; /* Couleur de la bordure */
+    -fx-border-width: 2px;  /* Épaisseur de la bordure */
+    -fx-border-radius: 5px; /* Bordure arrondie */
+    -fx-background-radius: 5px; /* Fond arrondi */
+    -fx-background-color: #0A4A5D;
 }
+
+
 .styled-table {
     -fx-font-size: 12;
     -fx-background-color: white;
     -fx-border-color: transparent;
 }
+
 
 .styled-table .column-header {
     -fx-background-color: #0a3b49; /* Fond vert pour les en-têtes */
@@ -56,7 +70,7 @@
     -fx-background-color: white; /* Fond blanc pour les lignes */
     -fx-border-color: transparent transparent #f2f2f2 transparent; /* Bordure inférieure fine gris clair */
     -fx-border-width: 0 0 1 0;
-    -fx-padding: 5;
+
 }
 
 /* Style des lignes alternées */
@@ -93,4 +107,16 @@
 }
 .date-picker {
     -fx-pref-width: 255px;
+}
+
+.tooltip {
+    -fx-background-color: rgba(247, 247, 247, 0.8); /* #F7F7F7 with 80% opacity */
+    -fx-text-fill: #0a3b49; /* Ensures text is readable */
+    -fx-background-radius: 4px; /* Rounds the corners */
+    -fx-border-color: transparent; /* Removes any border */
+    -fx-border-width: 0; /* Ensures no border width */
+    -fx-effect: none; /* Removes the drop shadow effect */
+    -fx-background-insets: 0; /* Removes any insets that might cause a shadow-like appearance */
+    -fx-padding: 5px; /* Optional: Adjust padding for better appearance */
+    -fx-font-size: 12px; /* Optional: Adjust font size */
 }

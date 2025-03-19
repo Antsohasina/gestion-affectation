@@ -46,7 +46,7 @@
 
                                 </TableColumn>
 
-                                <TableColumn fx:id="provinceColumn" text="Province" prefWidth="200.0">
+                                <TableColumn fx:id="provinceColumn" text="Province" prefWidth="203.0">
                                         <cellValueFactory>
                                                 <PropertyValueFactory property="province"/>
                                         </cellValueFactory>
@@ -54,7 +54,7 @@
                                 </TableColumn>
 
                                 <!-- Nouvelle colonne Actions -->
-                                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="140.0" styleClass="action-column">
+                                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="125.0" styleClass="action-column">
                                         <cellFactory>
                                                 <!-- Vous pourriez définir une cellule personnalisée ici, mais pour simplicité, nous le ferons dans le contrôleur -->
                                         </cellFactory>
