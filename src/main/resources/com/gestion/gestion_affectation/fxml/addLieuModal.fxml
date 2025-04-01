@@ -30,14 +30,14 @@
                 <Label text="Désignation:" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
             </children>
         </HBox>
-        <TextField fx:id="designationField" promptText="ex. Antananarivo" style="-fx-pref-width: 200;"/>
+        <TextField fx:id="designationField" promptText="ex. Antsirabe" style="-fx-pref-width: 200;"/>
 
         <HBox alignment="BASELINE_LEFT">
             <children>
                 <Label text="Province:" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
             </children>
         </HBox>
-        <TextField fx:id="provinceField" promptText="ex. Analamanga" style="-fx-pref-width: 200;"/>
+        <TextField fx:id="provinceField" promptText="ex. Antananarivo" style="-fx-pref-width: 200;"/>
 
         <HBox alignment="CENTER_RIGHT" spacing="15">
             <children>

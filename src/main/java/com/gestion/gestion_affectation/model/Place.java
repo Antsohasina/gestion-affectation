@@ -57,4 +57,19 @@ public class Place {
     public void setProvince(String province) {
         this.province.set(province);
     }
+
+    // Implémentation de equals()
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Place place = (Place) o;
+        return codePlace != null && codePlace.equals(place.codePlace); // Égalité basée sur codePlace
+    }
+
+    // Implémentation de hashCode()
+    @Override
+    public int hashCode() {
+        return codePlace != null ? codePlace.hashCode() : 0;
+    }
 }

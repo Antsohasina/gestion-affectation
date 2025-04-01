@@ -25,12 +25,7 @@
         </HBox>
         <TextField fx:id="codeEmpField" promptText="ex. E001" style="-fx-pref-width: 200;"/>
 
-        <HBox alignment="BASELINE_LEFT">
-            <children>
-                <Label text="Prénom:" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>
-            </children>
-        </HBox>
-        <TextField fx:id="firstNameField" promptText="ex. Rabe" style="-fx-pref-width: 200;"/>
+
 
         <HBox alignment="BASELINE_LEFT">
             <children>
@@ -38,7 +33,12 @@
             </children>
         </HBox>
         <TextField fx:id="lastNameField" promptText="ex. Dupont" style="-fx-pref-width: 200;"/>
-
+        <HBox alignment="BASELINE_LEFT">
+            <children>
+                <Label text="Prénom:" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>
+            </children>
+        </HBox>
+        <TextField fx:id="firstNameField" promptText="ex. Rabe" style="-fx-pref-width: 200;"/>
         <HBox alignment="BASELINE_LEFT">
             <children>
                 <Label text="Poste:" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #0a3b49;"/>

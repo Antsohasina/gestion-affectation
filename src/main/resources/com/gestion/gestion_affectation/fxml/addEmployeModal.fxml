@@ -31,7 +31,7 @@
                 <Label text="Nom de famille:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
             </children>
         </HBox>
-        <TextField fx:id="lastNameField"/> <!-- Updated from nomField -->
+        <TextField fx:id="lastNameField" promptText="ex. RAKOTO"/>
 
 
         <HBox alignment="BASELINE_LEFT">
@@ -39,7 +39,7 @@
                 <Label text="Prénom:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
             </children>
         </HBox>
-        <TextField fx:id="firstNameField"/> <!-- Updated from prenomsField -->
+        <TextField fx:id="firstNameField" promptText="ex. Malala"/>
 
 
         <HBox alignment="BASELINE_LEFT">
@@ -47,7 +47,7 @@
                 <Label text="Poste:" style="-fx-font-weight: bold; -fx-text-fill: #0a3b49"/>
             </children>
         </HBox>
-        <TextField fx:id="jobField"/> <!-- Updated from posteField -->
+        <TextField fx:id="jobField" promptText="ex. Dev"/>
 
         <HBox alignment="CENTER_RIGHT" spacing="10">
             <children>

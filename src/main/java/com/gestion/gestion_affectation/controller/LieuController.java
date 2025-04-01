@@ -1,5 +1,7 @@
 package com.gestion.gestion_affectation.controller;
 
+
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,6 +34,9 @@ import javafx.stage.StageStyle;
 public class LieuController implements Initializable {
 
     @FXML
+    private TextField searchField;
+
+    @FXML
     private TableView<Place> tableLieux;
 
     @FXML
@@ -62,7 +67,88 @@ public class LieuController implements Initializable {
         tableLieux.setItems(lieuxList);
 
         loadLieuxFromApi(); // Charger les données au démarrage
+
+        // Ajout du listener pour la recherche
+        searchField.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue != null && !newValue.trim().isEmpty()) {
+                searchPlaces(newValue.trim());
+            } else {
+                loadLieuxFromApi(); // Revenir à la liste complète si la recherche est vide
+            }
+        });
     }
+    private void searchPlaces(String query) {
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                ObservableList<Place> searchResults = FXCollections.observableArrayList();
+
+                HttpClient client = HttpClient.newHttpClient();
+
+                try {
+                    // Recherche par designation
+                    HttpRequest requestDesignation = HttpRequest.newBuilder()
+                            .uri(new URL("http://localhost:8080/places/search/findByDesignationContainingIgnoreCase?designation=" + query).toURI())
+                            .GET()
+                            .build();
+                    HttpResponse<String> responseDesignation = client.send(requestDesignation, HttpResponse.BodyHandlers.ofString());
+                    searchResults.addAll(parsePlacesFromJson(responseDesignation.body()));
+                } catch (Exception e) {
+                    System.err.println("Erreur recherche par designation : " + e.getMessage());
+                }
+
+                try {
+                    // Recherche par province
+                    HttpRequest requestProvince = HttpRequest.newBuilder()
+                            .uri(new URL("http://localhost:8080/places/search/findByProvinceContainingIgnoreCase?province=" + query).toURI())
+                            .GET()
+                            .build();
+                    HttpResponse<String> responseProvince = client.send(requestProvince, HttpResponse.BodyHandlers.ofString());
+                    searchResults.addAll(parsePlacesFromJson(responseProvince.body()));
+                } catch (Exception e) {
+                    System.err.println("Erreur recherche par firstName : " + e.getMessage());
+                }
+
+                // Supprimer les doublons
+                ObservableList<Place> uniqueResults = FXCollections.observableArrayList();
+                searchResults.stream()
+                        .distinct() // Utilise equals() et hashCode() de Employe
+                        .forEach(uniqueResults::add);
+
+                // Mettre à jour l'UI
+                javafx.application.Platform.runLater(() -> lieuxList.setAll(uniqueResults));
+                return null;
+            }
+        };
+        new Thread(task).start();
+    }
+
+    private ObservableList<Place> parsePlacesFromJson(String jsonResponse) {
+        ObservableList<Place> result = FXCollections.observableArrayList();
+        try {
+            JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
+            JsonArray placesArray = jsonObject.getAsJsonObject("_embedded").getAsJsonArray("places");
+
+            for (JsonElement element : placesArray) {
+                JsonObject placeObj = element.getAsJsonObject();
+                String codePlace = placeObj.getAsJsonObject("_links")
+                        .getAsJsonObject("self")
+                        .get("href").getAsString()
+                        .substring(placeObj.getAsJsonObject("_links")
+                                .getAsJsonObject("self")
+                                .get("href").getAsString().lastIndexOf("/") + 1);
+                String designation = placeObj.get("designation").getAsString();
+                String province = placeObj.get("province").getAsString();
+
+
+                result.add(new Place(codePlace, designation, province));
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur parsing JSON : " + e.getMessage());
+        }
+        return result;
+    }
+
 
     private void configureActionsColumn() {
         actionsColumn.setCellFactory(param -> new TableCell<Place, Void>() {
