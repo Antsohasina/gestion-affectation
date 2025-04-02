@@ -3,6 +3,8 @@ package com.gestion.gestion_affectation.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Objects;
+
 public class Place {
     private final StringProperty codePlace = new SimpleStringProperty();
     private final StringProperty designation = new SimpleStringProperty();
@@ -64,12 +66,12 @@ public class Place {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Place place = (Place) o;
-        return codePlace != null && codePlace.equals(place.codePlace); // Égalité basée sur codePlace
+        // Comparaison sécurisée avec null
+        return Objects.equals(codePlace.get(), place.codePlace.get());
     }
 
-    // Implémentation de hashCode()
     @Override
     public int hashCode() {
-        return codePlace != null ? codePlace.hashCode() : 0;
+        return Objects.hash(codePlace.get());
     }
 }

@@ -93,30 +93,27 @@ public class LieuController implements Initializable {
                             .build();
                     HttpResponse<String> responseDesignation = client.send(requestDesignation, HttpResponse.BodyHandlers.ofString());
                     searchResults.addAll(parsePlacesFromJson(responseDesignation.body()));
-                } catch (Exception e) {
-                    System.err.println("Erreur recherche par designation : " + e.getMessage());
-                }
 
-                try {
-                    // Recherche par province
+                    // Recherche par province uniquement si nécessaire
                     HttpRequest requestProvince = HttpRequest.newBuilder()
                             .uri(new URL("http://localhost:8080/places/search/findByProvinceContainingIgnoreCase?province=" + query).toURI())
                             .GET()
                             .build();
                     HttpResponse<String> responseProvince = client.send(requestProvince, HttpResponse.BodyHandlers.ofString());
-                    searchResults.addAll(parsePlacesFromJson(responseProvince.body()));
+
+                    // Ajouter les résultats de la province en évitant les doublons dès l'ajout
+                    ObservableList<Place> provinceResults = parsePlacesFromJson(responseProvince.body());
+                    for (Place place : provinceResults) {
+                        if (!searchResults.contains(place)) { // Vérifie si le lieu existe déjà
+                            searchResults.add(place);
+                        }
+                    }
+
+                    // Mettre à jour l'UI
+                    javafx.application.Platform.runLater(() -> lieuxList.setAll(searchResults));
                 } catch (Exception e) {
-                    System.err.println("Erreur recherche par firstName : " + e.getMessage());
+                    System.err.println("Erreur lors de la recherche : " + e.getMessage());
                 }
-
-                // Supprimer les doublons
-                ObservableList<Place> uniqueResults = FXCollections.observableArrayList();
-                searchResults.stream()
-                        .distinct() // Utilise equals() et hashCode() de Employe
-                        .forEach(uniqueResults::add);
-
-                // Mettre à jour l'UI
-                javafx.application.Platform.runLater(() -> lieuxList.setAll(uniqueResults));
                 return null;
             }
         };
